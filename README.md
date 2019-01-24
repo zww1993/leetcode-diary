@@ -10,7 +10,7 @@ Show you the code, and talk is not cheap.
 
 * [1.两数之和]
 
-[1.两数之和]: #1.两数之和
+[1两数之和]: #1两数之和
 
 ## 1.两数之和
 
