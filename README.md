@@ -1,2 +1,2 @@
-# leetcode-
+# leetcode-diary
 leetcode日记
