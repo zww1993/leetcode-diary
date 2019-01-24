@@ -6,6 +6,12 @@
 
 Show you the code, and talk is not cheap.
 
+## 目录
+
+* [1.两数之和]
+
+[1.两数之和]: #1.两数之和
+
 ## 1.两数之和
 
 #### 题目描述：
