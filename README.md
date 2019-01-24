@@ -1,7 +1,9 @@
 # leetcode日记
 
 语言：Java
+
 仅用于记录自己的leetcode解题思路，第一遍做，可能不是最优解，以后再补充。
+
 Show you the code, and talk is not cheap.
 
 ## 1.两数之和
