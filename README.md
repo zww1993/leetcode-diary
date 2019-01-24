@@ -13,10 +13,12 @@ Show you the code, and talk is not cheap.
 * [1. 两数之和]
 * [2. 两数相加]
 * [3. 无重复字符的最长子串]
+* [4. 寻找两个有序数组的中位数]
 
 [1. 两数之和]: #1-两数之和
 [2. 两数相加]: #2-两数相加
 [3. 无重复字符的最长子串]: #3-无重复字符的最长子串
+[4. 寻找两个有序数组的中位数]: #4-寻找两个有序数组的中位数
 
 ## 1. 两数之和
 
@@ -179,6 +181,93 @@ class Solution {
 talk:
 
 利用双浮标，浮标i为字符串起点，内层循环从i+1的位置开始判断下标为j的字符在[i, j-1]区间内是否存在，若不存在length自增，j向右移动一位。若存在break，如果length大于max，则将length赋值给max，然后i向右移动一位，继续下一次新的内层循环，直到浮标i移动到字符串结尾，返回max的值。
+
+## 4. 寻找两个有序数组的中位数
+
+#### 题目描述
+
+给定两个大小为 m 和 n 的有序数组 nums1 和 nums2。
+
+请你找出这两个有序数组的中位数，并且要求算法的时间复杂度为 O(log(m + n))。
+
+你可以假设 nums1 和 nums2 不会同时为空。
+
+示例 1:
+```
+nums1 = [1, 3]
+nums2 = [2]
+
+则中位数是 2.0
+```
+
+示例 2:
+```
+nums1 = [1, 2]
+nums2 = [3, 4]
+
+则中位数是 (2 + 3)/2 = 2.5
+```
+
+#### 解答：
+
+code:
+```java
+class Solution {
+    public double findMedianSortedArrays(int[] nums1, int[] nums2) {
+        if (nums1.length == 0) {
+            return findMedian(nums2);
+        }
+        if (nums2.length == 0) {
+            return findMedian(nums1);
+        }
+        
+        int[] nums = sort(nums1, nums2);
+        return findMedian(nums);
+    }
+    
+    private double findMedian(int[] nums) {
+        int length = nums.length;
+        if (length % 2 == 0) {
+            return (nums[length/2-1]+nums[length/2])/2.0f;
+        }
+        return nums[length/2];
+    }
+    
+    private int[] sort(int[] nums1, int[] nums2) {
+        int[] array = new int[nums1.length+nums2.length];
+        int i1 = 0;
+        int i2 = 0;
+        while (i1 < nums1.length || i2 < nums2.length) {
+            if (i1 >= nums1.length) {
+                while (i2 < nums2.length) {
+                    array[i1 + i2] = nums2[i2];
+                    i2++;
+                }
+                break;
+            }
+            if (i2 >= nums2.length) {
+                while (i1 < nums1.length) {
+                    array[i1 + i2] = nums1[i1];
+                    i1++;
+                }
+                break;
+            }
+            int num1 = nums1[i1];
+            int num2 = nums2[i2];
+            if (num1 > num2) {
+                array[i1 + i2] = num2;
+                i2++;
+            }else {
+                array[i1 + i2] = num1;
+                i1++;
+            }
+        }
+        return array;
+    }
+}
+```
+
+
 
 
 
