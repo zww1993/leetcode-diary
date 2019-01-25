@@ -39,7 +39,7 @@ Show you the code, and talk is not cheap.
 所以返回 [0, 1]
 ```
 
-#### 解答：
+#### 答案：
 
 code:
 ```java
@@ -81,7 +81,7 @@ talk:
 原因：342 + 465 = 807
 ```
 
-#### 解答：
+#### 答案：
 
 code:
 ```java
@@ -154,7 +154,9 @@ talk:
      请注意，你的答案必须是 子串 的长度，"pwke" 是一个子序列，不是子串。
 ```
 
-#### 解答：
+#### 答案：
+
+##### 方法一：
 
 code:
 ```java
@@ -184,6 +186,31 @@ talk:
 
 利用双浮标，浮标i为字符串起点，内层循环从i+1的位置开始判断下标为j的字符在[i, j-1]区间内是否存在，若不存在length自增，j向右移动一位。若存在break，如果length大于max，则将length赋值给max，然后i向右移动一位，继续下一次新的内层循环，直到浮标i移动到字符串结尾，返回max的值。
 
+##### 方法二：滑动窗口
+
+code:
+```java
+class Solution {
+    public static int lengthOfLongestSubstring(String s) {
+        int max = 0;
+        Map<Character,Integer> map = new HashMap<>();
+        int i = 0;
+        for (int j = 0; j < s.length(); j++) {
+            if (map.containsKey(s.charAt(j))) {
+                i = Math.max(map.get(s.charAt(j)), i);
+            }
+            max = Math.max(max, j - i + 1);
+            map.put(s.charAt(j), j + 1);
+        }
+        return max;
+    }
+}
+```
+
+talk:
+
+
+
 ## 4. 寻找两个有序数组的中位数
 
 #### 题目描述
@@ -210,7 +237,7 @@ nums2 = [3, 4]
 则中位数是 (2 + 3)/2 = 2.5
 ```
 
-#### 解答：
+#### 答案：
 
 code:
 ```java
