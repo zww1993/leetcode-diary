@@ -197,10 +197,10 @@ class Solution {
         int i = 0;
         for (int j = 0; j < s.length(); j++) {
             if (map.containsKey(s.charAt(j))) {
-                i = Math.max(map.get(s.charAt(j)), i);
+                i = Math.max(map.get(s.charAt(j)) + 1, i);
             }
             max = Math.max(max, j - i + 1);
-            map.put(s.charAt(j), j + 1);
+            map.put(s.charAt(j), j);
         }
         return max;
     }
@@ -209,7 +209,7 @@ class Solution {
 
 talk:
 
-
+初始i和j都在0，j开始向右移动，并且每移动一位，判断当前对应的字符在Map中是否存在，如果存在并且该字符在Map中存储的下标大于i当前的位置，就将i移动到该字符下标+1的位置，然后将对应的字符作为key，下标作为value存入Map。
 
 ## 4. 寻找两个有序数组的中位数
 
