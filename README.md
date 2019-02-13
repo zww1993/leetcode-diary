@@ -327,10 +327,12 @@ E   D   H   N
 请你实现这个将字符串进行指定行数变换的函数：
 
 string convert(string s, int numRows);
+
 示例 1:
 
 输入: s = "LEETCODEISHIRING", numRows = 3
 输出: "LCIRETOESIIGEDHN"
+
 示例 2:
 
 输入: s = "LEETCODEISHIRING", numRows = 4
