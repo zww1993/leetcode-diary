@@ -16,11 +16,15 @@ Show you the code, and talk is not cheap.
 * [2. 两数相加]
 * [3. 无重复字符的最长子串]
 * [4. 寻找两个有序数组的中位数]
+* [6. Z字形变换]
+* [7. 整数反转]
 
 [1. 两数之和]: #1-两数之和
 [2. 两数相加]: #2-两数相加
 [3. 无重复字符的最长子串]: #3-无重复字符的最长子串
 [4. 寻找两个有序数组的中位数]: #4-寻找两个有序数组的中位数
+[6. Z字形变换]: #6-Z字形变换
+[7. 整数反转]: #7-整数反转
 
 ## 1. 两数之和
 
@@ -308,7 +312,7 @@ talk:
 
 如果数组的length为奇数，则中位数等于下标为 length/2 的值，如果数组的length为偶数，则中位数等于下标为 length/2 - 1 和 length/2 的两个数的平均数。 
 
-## 6. Z 字形变换
+## 6. Z字形变换
 
 #### 题目描述
 
@@ -397,3 +401,93 @@ class Solution {
 talk:
 
 根据规则把字符串转换成了一个二维数组，然后遍历二维数组组成新的字符串。
+
+## 7. 整数反转
+
+#### 题目描述
+
+给出一个 32 位的有符号整数，你需要将这个整数中每位上的数字进行反转。
+
+示例 1:
+```
+输入: 123
+输出: 321
+```
+
+ 示例 2:
+```
+输入: -123
+输出: -321
+```
+ 
+ 示例 3:
+```
+输入: 120
+输出: 21
+```
+ 
+ 注意:
+
+假设我们的环境只能存储得下 32 位的有符号整数，则其数值范围为 [−231,  231 − 1]。请根据这个假设，如果反转后整数溢出那么就返回 0。
+
+#### 答案
+
+##### 方法一：
+
+code:
+```java
+class Solution {
+    public int reverse(int x) {
+        try {
+            if (x == 0) {
+            return 0;
+        }
+        int flag = 1;
+        String s = x + "";
+        if (x < 0) {
+            flag = -1;
+            s = x * -1 + "";
+        }
+        StringBuilder str = new StringBuilder();
+        for (int i = s.length() - 1; i >= 0; i--) {
+            str.append(s.charAt(i));
+        }
+        int result = Integer.valueOf(str.toString()) * flag;
+        return result;
+        }catch(Exception e) {
+            return 0;
+        }
+    }
+}
+```
+
+talk:
+
+把int转成字符串，翻转字符串后转回int。
+
+##### 方法二：
+
+code:
+```java
+class Solution {
+    public int reverse(int x) {
+        int result = 0;
+        while (x != 0) {
+            int m = x % 10;
+            x = x / 10;
+            if (result > Integer.MAX_VALUE/10 || (m > 7 && result == Integer.MAX_VALUE/10)) {
+                return 0;
+            }
+            if (result < Integer.MIN_VALUE/10 || (m < -8 && result == Integer.MIN_VALUE/10)) {
+                return 0;
+            }
+            result = result * 10 + m;
+        }
+        return result;
+    }
+}
+```
+
+talk:
+
+循环取余，然后*10累加，需要注意的是2^31-1=2147483647，-2^31=-2147483648，不要忘记判断末位即可。
