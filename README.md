@@ -350,5 +350,47 @@ E C   I H   N
 T     S     G
 ```
 
+#### 答案
 
+code:
+```java
+class Solution {
+    public String convert(String s, int numRows) {
+        int y = 0;
+        int max = Math.min(s.length(), numRows);
+        if (max == 1) {
+            return s;
+        }
+        boolean flag = true;
+        List<List> list = new ArrayList<>();
+        for (int i = 0; i < max; i++) {
+            List<Character> cl = new ArrayList<>();
+            list.add(cl);
+        }
+        for (int i = 0; i < s.length(); i++) {
+            Character c = s.charAt(i);
+            List<Character> cl = list.get(y);
+            cl.add(c);
+            if (flag) {
+                y++;
+                if (y >= max - 1) {
+                    flag = false;
+                }
+            }else {
+                y--;
+                if (y <= 0) {
+                    flag = true;
+                }
+            }
+        }
+        StringBuilder result = new StringBuilder();
+        for (List<Character> cl: list) {
+            for (Character c : cl) {
+                result.append(c);
+            }
+        }
+        return result.toString();
+    }
+}
+```
 
