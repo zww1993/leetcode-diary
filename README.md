@@ -730,6 +730,8 @@ p = "mis*is*p*."
 
 #### 答案
 
+##### 方法一：
+
 code:
 ```java
 class Solution {
@@ -785,3 +787,63 @@ talk:
     * 如果flag等于true，则匹配sIndex+1和pIndex+1。
     * 如果flag等于false，匹配失败，返回false。
     
+##### 方法二：动态规划优化
+
+code:
+```java
+enum Result {
+    TRUE,FALSE
+}
+
+class Solution {
+    Result[][] results;
+    
+    public boolean isMatch(String s, String p) {
+        if (p.equals(".*")) {
+            return true;
+        }
+        if (s == null || p == null) {
+            return false;
+        }
+        results = new Result[s.length()+1][p.length()+1];
+        return matchChar(s, 0, p ,0);
+    }
+    
+    public boolean matchChar(String s, int sIndex, String p, int pIndex) {
+        if (results[sIndex][pIndex] != null) {
+            return results[sIndex][pIndex] == Result.TRUE;
+        }
+        
+        if (sIndex == s.length() && pIndex == p.length()) {
+            return true;
+        }
+        if (sIndex != s.length() && pIndex == p.length()) {
+            return false;
+        }
+        
+        boolean r;
+        boolean flag = sIndex < s.length() && (s.charAt(sIndex) == p.charAt(pIndex) || p.charAt(pIndex) == '.');
+        
+        if (pIndex + 1 < p.length() && p.charAt(pIndex + 1) == '*') {
+            if (flag) {
+                r = matchChar(s, sIndex+1, p, pIndex) || matchChar(s, sIndex, p, pIndex+2);
+            }else {
+                r = matchChar(s, sIndex, p, pIndex+2);
+            }
+        }else {
+            if (flag) {
+                r = matchChar(s, sIndex+1, p, pIndex+1);
+            }else {
+                r = false;
+            }
+        }
+        results[sIndex][pIndex] = r ? Result.TRUE : Result.FALSE;
+        return r;
+    }
+    
+}
+```
+
+talk:
+
+使用动态规划优化了算法，执行时间缩短为了三分之一。
