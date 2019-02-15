@@ -610,3 +610,54 @@ class Solution {
 talk:
 
 这题其实并不复杂，但是题目描述的并不清楚而且要考虑到各种情况，被测试用例坑了好久。先拿" "分割获取到第一个非空连续字符串，然后遍历字符拼成新串转回数字即可。
+
+## 9. 回文数
+
+#### 题目描述
+
+判断一个整数是否是回文数。回文数是指正序（从左向右）和倒序（从右向左）读都是一样的整数。
+
+示例 1:
+```
+输入: 121
+输出: true
+```
+
+示例 2:
+```
+输入: -121
+输出: false
+解释: 从左向右读, 为 -121 。 从右向左读, 为 121- 。因此它不是一个回文数。
+```
+
+示例 3:
+```
+输入: 10
+输出: false
+解释: 从右向左读, 为 01 。因此它不是一个回文数。
+```
+
+#### 答案
+
+code:
+```java
+class Solution {
+    public boolean isPalindrome(int x) {
+        if (x < 0) {
+            return false;
+        }
+        String s = String.valueOf(x);
+        Integer length = s.length();
+        for (int i = 0; i < length/2; i++) {
+            if (s.charAt(i) != s.charAt(length-i-1)) {
+                return false;
+            }
+        }
+        return true;
+    }
+}
+```
+
+talk:
+
+从最高位取出每一个字符与对应的低位的字符比较，如果不一致则返回false。
