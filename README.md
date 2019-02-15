@@ -856,4 +856,4 @@ talk:
 
 说明：你不能倾斜容器，且 n 的值至少为 2。
 
-[img](https://github.com/zww1993/leetcode-diary/blob/master/images/question_11.jpg?raw=true)
+![avatar](https://github.com/zww1993/leetcode-diary/blob/master/images/question_11.jpg?raw=true)
