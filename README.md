@@ -20,6 +20,7 @@ Show you the code, and talk is not cheap.
 * [7. 整数反转]
 * [8. 字符串转换整数]
 * [9. 回文数]
+* [9. 回文数]
 
 [1. 两数之和]: #1-两数之和
 [2. 两数相加]: #2-两数相加
@@ -28,6 +29,7 @@ Show you the code, and talk is not cheap.
 [6. Z字形变换]: #6-Z字形变换
 [7. 整数反转]: #7-整数反转
 [8. 字符串转换整数]: #8-字符串转换整数
+[9. 回文数]: #9-回文数
 [9. 回文数]: #9-回文数
 
 ## 1. 两数之和
@@ -663,3 +665,126 @@ class Solution {
 talk:
 
 从最高位取出每一个字符与对应的低位的字符比较，如果不一致则返回false。
+
+## 10. 正则表达式匹配
+
+#### 题目描述
+
+给定一个字符串 (s) 和一个字符模式 (p)。实现支持 '.' 和 '*' 的正则表达式匹配。
+
+```
+'.' 匹配任意单个字符。
+'*' 匹配零个或多个前面的元素。
+```
+
+匹配应该覆盖整个字符串 (s) ，而不是部分字符串。
+
+说明:
+
+s 可能为空，且只包含从 a-z 的小写字母。
+p 可能为空，且只包含从 a-z 的小写字母，以及字符 . 和 *。
+
+示例 1:
+```
+输入:
+s = "aa"
+p = "a"
+输出: false
+解释: "a" 无法匹配 "aa" 整个字符串。
+```
+
+示例 2:
+```
+输入:
+s = "aa"
+p = "a*"
+输出: true
+解释: '*' 代表可匹配零个或多个前面的元素, 即可以匹配 'a' 。因此, 重复 'a' 一次, 字符串可变为 "aa"。
+```
+
+示例 3:
+```
+输入:
+s = "ab"
+p = ".*"
+输出: true
+解释: ".*" 表示可匹配零个或多个('*')任意字符('.')。
+```
+
+示例 4:
+```
+输入:
+s = "aab"
+p = "c*a*b"
+输出: true
+解释: 'c' 可以不被重复, 'a' 可以被重复一次。因此可以匹配字符串 "aab"。
+```
+
+示例 5:
+```
+输入:
+s = "mississippi"
+p = "mis*is*p*."
+输出: false
+```
+
+#### 答案
+
+code:
+```java
+class Solution {
+    public boolean isMatch(String s, String p) {
+        if (p.equals(".*")) {
+            return true;
+        }
+        if (s == null || p == null) {
+            return false;
+        }
+        return matchChar(s, 0, p ,0);
+    }
+    
+    public boolean matchChar(String s, int sIndex, String p, int pIndex) {
+        if (sIndex == s.length() && pIndex == p.length()) {
+            return true;
+        }
+        if (sIndex != s.length() && pIndex == p.length()) {
+            return false;
+        }
+        
+        boolean flag = sIndex < s.length() && (s.charAt(sIndex) == p.charAt(pIndex) || p.charAt(pIndex) == '.');
+        
+        if (pIndex + 1 < p.length() && p.charAt(pIndex + 1) == '*') {
+            if (flag) {
+                return matchChar(s, sIndex+1, p, pIndex) || matchChar(s, sIndex, p, pIndex+2);
+            }else {
+                return matchChar(s, sIndex, p, pIndex+2);
+            }
+        }else {
+            if (flag) {
+                return matchChar(s, sIndex+1, p, pIndex+1);
+            }else {
+                return false;
+            }
+        }
+    }
+    
+}
+```
+
+talk:
+
+先比较当前sIndex和pIndex指向的字符是否匹配得到flag。
+
+当pIndex+1对应的字符是'*'时：
+
+    * 如果flag等于true，则匹配（sIndex+1和pIndex || sIndex和pIndex+2）。
+        
+        * 注意：这里匹配sIndex和pIndex+2是为了s = "aa" p = "a*a"这种情况。
+        
+    * 如果flag等于false，则匹配sIndex和pIndex+2。
+    
+当pIndex+1对应的字符不是'*'时：
+
+    * 如果flag等于true，则匹配sIndex+1和pIndex+1。
+    * 如果flag等于false，匹配失败，返回false。
+    
