@@ -777,10 +777,7 @@ talk:
 
 当pIndex+1对应的字符是'*'时：
 
-    * 如果flag等于true，则匹配（sIndex+1和pIndex || sIndex和pIndex+2）。
-        
-        * 注意：这里匹配sIndex和pIndex+2是为了s = "aa" p = "a*a"这种情况。
-        
+    * 如果flag等于true，则匹配（sIndex+1和pIndex || sIndex和pIndex+2）。（注意：这里匹配sIndex和pIndex+2是为了s = "aa" p = "a*a"这种情况。）
     * 如果flag等于false，则匹配sIndex和pIndex+2。
     
 当pIndex+1对应的字符不是'*'时：
