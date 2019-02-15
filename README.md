@@ -865,3 +865,32 @@ talk:
 输入: [1,8,6,2,5,4,8,3,7]
 输出: 49
 ```
+
+#### 答案
+
+code:
+```java
+class Solution {
+    public int maxArea(int[] height) {
+        int max = 0;
+        int i = 0;
+        int j = height.length - 1;
+        while (i < j) {
+            int hi = height[i];
+            int hj = height[j];
+            int s = Math.min(hi, hj) * (j - i);
+            max = Math.max(max, s);
+            if (hi > hj) {
+                while(height[--j] < hj);
+            }else {
+                while(height[++i] < hi);
+            }
+        }
+        return max;
+    }
+}
+```
+
+talk:
+
+双指针。
