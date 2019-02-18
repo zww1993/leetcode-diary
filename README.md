@@ -38,7 +38,7 @@
 
 ## 1. 两数之和
 
-#### 题目描述：
+### 题目描述：
 
 给定一个整数数组 nums 和一个目标值 target，请你在该数组中找出和为目标值的那 两个 整数，并返回他们的数组下标。
 
@@ -53,7 +53,7 @@
 所以返回 [0, 1]
 ```
 
-#### 答案：
+### 答案：
 ```java
 class Solution {
     public int[] twoSum(int[] nums, int target) {
@@ -75,7 +75,7 @@ class Solution {
 
 ## 2. 两数相加
 
-#### 题目描述：
+### 题目描述：
 
 给出两个 非空 的链表用来表示两个非负的整数。其中，它们各自的位数是按照 逆序 的方式存储的，并且它们的每个节点只能存储 一位 数字。
 
@@ -91,7 +91,7 @@ class Solution {
 原因：342 + 465 = 807
 ```
 
-#### 答案：
+### 答案：
 ```java
 class Solution {
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
@@ -134,7 +134,7 @@ class Solution {
 
 ## 3. 无重复字符的最长子串
 
-#### 题目描述：
+### 题目描述：
 
 给定一个字符串，请你找出其中不含有重复字符的 最长子串 的长度。
 
@@ -160,9 +160,9 @@ class Solution {
      请注意，你的答案必须是 子串 的长度，"pwke" 是一个子序列，不是子串。
 ```
 
-#### 答案：
+### 答案：
 
-##### 方法一：
+#### 方法一：
 ```java
 class Solution {
     public static int lengthOfLongestSubstring(String s) {
@@ -188,7 +188,7 @@ class Solution {
 
 利用双浮标，浮标i为字符串起点，内层循环从i+1的位置开始判断下标为j的字符在[i, j-1]区间内是否存在，若不存在length自增，j向右移动一位。若存在break，如果length大于max，则将length赋值给max，然后i向右移动一位，继续下一次新的内层循环，直到浮标i移动到字符串结尾，返回max的值。
 
-##### 方法二：滑动窗口
+#### 方法二：滑动窗口
 ```java
 class Solution {
     public static int lengthOfLongestSubstring(String s) {
@@ -211,7 +211,7 @@ class Solution {
 
 ## 4. 寻找两个有序数组的中位数
 
-#### 题目描述
+### 题目描述
 
 给定两个大小为 m 和 n 的有序数组 nums1 和 nums2。
 
@@ -235,7 +235,7 @@ nums2 = [3, 4]
 则中位数是 (2 + 3)/2 = 2.5
 ```
 
-#### 答案：
+### 答案：
 ```java
 class Solution {
     public double findMedianSortedArrays(int[] nums1, int[] nums2) {
@@ -304,7 +304,7 @@ class Solution {
 
 ## 6. Z字形变换
 
-#### 题目描述
+### 题目描述
 
 将一个给定字符串根据给定的行数，以从上往下、从左到右进行 Z 字形排列。
 
@@ -344,7 +344,7 @@ E C   I H   N
 T     S     G
 ```
 
-#### 答案
+### 答案
 ```java
 class Solution {
     public String convert(String s, int numRows) {
@@ -390,7 +390,7 @@ class Solution {
 
 ## 7. 整数反转
 
-#### 题目描述
+### 题目描述
 
 给出一个 32 位的有符号整数，你需要将这个整数中每位上的数字进行反转。
 
@@ -416,9 +416,9 @@ class Solution {
 
 假设我们的环境只能存储得下 32 位的有符号整数，则其数值范围为 [−231,  231 − 1]。请根据这个假设，如果反转后整数溢出那么就返回 0。
 
-#### 答案
+### 答案
 
-##### 方法一：
+#### 方法一：
 ```java
 class Solution {
     public int reverse(int x) {
@@ -447,7 +447,7 @@ class Solution {
 
 把int转成字符串，翻转字符串后转回int。
 
-##### 方法二：
+#### 方法二：
 ```java
 class Solution {
     public int reverse(int x) {
@@ -472,7 +472,7 @@ class Solution {
 
 ## 8. 字符串转换整数
 
-#### 题目描述
+### 题目描述
 
 请你来实现一个 atoi 函数，使其能将字符串转换成整数。
 
@@ -527,7 +527,7 @@ class Solution {
      因此返回 INT_MIN (−231) 。
 ```
 
-#### 答案
+### 答案
 ```java
 class Solution {
     public int myAtoi(String str) {
@@ -585,7 +585,7 @@ class Solution {
 
 ## 9. 回文数
 
-#### 题目描述
+### 题目描述
 
 判断一个整数是否是回文数。回文数是指正序（从左向右）和倒序（从右向左）读都是一样的整数。
 
@@ -609,7 +609,7 @@ class Solution {
 解释: 从右向左读, 为 01 。因此它不是一个回文数。
 ```
 
-#### 答案
+### 答案
 ```java
 class Solution {
     public boolean isPalindrome(int x) {
@@ -632,7 +632,7 @@ class Solution {
 
 ## 10. 正则表达式匹配
 
-#### 题目描述
+### 题目描述
 
 给定一个字符串 (s) 和一个字符模式 (p)。实现支持 '.' 和 '*' 的正则表达式匹配。
 
@@ -692,9 +692,9 @@ p = "mis*is*p*."
 输出: false
 ```
 
-#### 答案
+### 答案
 
-##### 方法一：
+#### 方法一：
 ```java
 class Solution {
     public boolean isMatch(String s, String p) {
@@ -747,7 +747,7 @@ class Solution {
     * 如果flag等于true，则匹配sIndex+1和pIndex+1。
     * 如果flag等于false，匹配失败，返回false。
     
-##### 方法二：动态规划优化
+#### 方法二：动态规划优化
 ```java
 enum Result {
     TRUE,FALSE
@@ -806,7 +806,7 @@ class Solution {
 
 ## 11. 盛最多水的容器
 
-#### 题目描述
+### 题目描述
 
 给定 n 个非负整数 a1，a2，...，an，每个数代表坐标中的一个点 (i, ai) 。在坐标内画 n 条垂直线，垂直线 i 的两个端点分别为 (i, ai) 和 (i, 0)。找出其中的两条线，使得它们与 x 轴共同构成的容器可以容纳最多的水。
 
@@ -822,7 +822,7 @@ class Solution {
 输出: 49
 ```
 
-#### 答案
+### 答案
 ```java
 class Solution {
     public int maxArea(int[] height) {
@@ -849,7 +849,7 @@ class Solution {
 
 ## 12. 整数转罗马数字
 
-#### 题目描述
+### 题目描述
 
 罗马数字包含以下七种字符： I， V， X， L，C，D 和 M。
 ```
@@ -904,7 +904,7 @@ C 可以放在 D (500) 和 M (1000) 的左边，来表示 400 和 900。
 解释: M = 1000, CM = 900, XC = 90, IV = 4.
 ```
 
-#### 答案
+### 答案
 ```java
 class Solution {
     public String intToRoman(int num) {
@@ -927,7 +927,7 @@ class Solution {
 
 ## 13. 罗马数字转整数
 
-#### 题目描述
+### 题目描述
 
 罗马数字包含以下七种字符: I， V， X， L，C，D 和 M。
 
@@ -983,7 +983,7 @@ C 可以放在 D (500) 和 M (1000) 的左边，来表示 400 和 900。
 解释: M = 1000, CM = 900, XC = 90, IV = 4.
 ```
 
-#### 答案
+### 答案
 ```java
 class Solution {
     public int romanToInt(String s) {
