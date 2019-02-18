@@ -4,8 +4,6 @@
 
 仅用于记录自己的leetcode解题思路，第一遍做，可能不是最优解，以后再补充。
 
-Show you the code, and talk is not cheap.
-
 题目来自 https://leetcode-cn.com
 
 持续更新中......
@@ -56,8 +54,6 @@ Show you the code, and talk is not cheap.
 ```
 
 #### 答案：
-
-code:
 ```java
 class Solution {
     public int[] twoSum(int[] nums, int target) {
@@ -73,8 +69,6 @@ class Solution {
     }
 }
 ```
-
-talk:
 
 新建一个Map。遍历时，取 target 与 nums[i] 的差值，判断Map中以此差值为key的键值对是否存在，若存在，则返回 i 与所取到的键值对中的value，否则将 nums[i] 作为key，i 作为value存入Map，continue。
 
@@ -98,8 +92,6 @@ talk:
 ```
 
 #### 答案：
-
-code:
 ```java
 class Solution {
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
@@ -137,8 +129,6 @@ class Solution {
     }
 }
 ```
-
-talk:
 
 一开始我的思路是将两个链表转换成数字，相加以后在转换回链表，后来发现当两个数字过大时，会造成溢出，所以这个思路走不通，就换了一个思路。将两个数字对应的每一位从链表中取出，两数以及进位数相加得到结果写入新的链表并记录下进位的情况，直至两个数字都读取到了最高位并且进位为0；
 
@@ -203,8 +193,6 @@ talk:
 利用双浮标，浮标i为字符串起点，内层循环从i+1的位置开始判断下标为j的字符在[i, j-1]区间内是否存在，若不存在length自增，j向右移动一位。若存在break，如果length大于max，则将length赋值给max，然后i向右移动一位，继续下一次新的内层循环，直到浮标i移动到字符串结尾，返回max的值。
 
 ##### 方法二：滑动窗口
-
-code:
 ```java
 class Solution {
     public static int lengthOfLongestSubstring(String s) {
@@ -222,8 +210,6 @@ class Solution {
     }
 }
 ```
-
-talk:
 
 初始i和j都在0，j开始向右移动，并且每移动一位，判断当前对应的字符在Map中是否存在，如果存在并且该字符在Map中存储的下标大于i当前的位置，就将i移动到该字符下标+1的位置，然后将对应的字符作为key，下标作为value存入Map。
 
@@ -254,8 +240,6 @@ nums2 = [3, 4]
 ```
 
 #### 答案：
-
-code:
 ```java
 class Solution {
     public double findMedianSortedArrays(int[] nums1, int[] nums2) {
@@ -312,8 +296,6 @@ class Solution {
 }
 ```
 
-talk:
-
 这个问题可以拆解成两个小问题：1.将两个有序数组合并成一个有序数组，2.求一个有序数组的中位数。我们依次来实现。
 
 1.将两个有序数组合并成一个有序数组
@@ -367,8 +349,6 @@ T     S     G
 ```
 
 #### 答案
-
-code:
 ```java
 class Solution {
     public String convert(String s, int numRows) {
@@ -410,8 +390,6 @@ class Solution {
 }
 ```
 
-talk:
-
 根据规则把字符串转换成了一个二维数组，然后遍历二维数组组成新的字符串。
 
 ## 7. 整数反转
@@ -445,8 +423,6 @@ talk:
 #### 答案
 
 ##### 方法一：
-
-code:
 ```java
 class Solution {
     public int reverse(int x) {
@@ -473,13 +449,9 @@ class Solution {
 }
 ```
 
-talk:
-
 把int转成字符串，翻转字符串后转回int。
 
 ##### 方法二：
-
-code:
 ```java
 class Solution {
     public int reverse(int x) {
@@ -499,8 +471,6 @@ class Solution {
     }
 }
 ```
-
-talk:
 
 循环取余，然后*10累加，需要注意的是2^31-1=2147483647，-2^31=-2147483648，不要忘记判断末位即可。
 
@@ -562,8 +532,6 @@ talk:
 ```
 
 #### 答案
-
-code:
 ```java
 class Solution {
     public int myAtoi(String str) {
@@ -617,8 +585,6 @@ class Solution {
 }
 ```
 
-talk:
-
 这题其实并不复杂，但是题目描述的并不清楚而且要考虑到各种情况，被测试用例坑了好久。先拿" "分割获取到第一个非空连续字符串，然后遍历字符拼成新串转回数字即可。
 
 ## 9. 回文数
@@ -648,8 +614,6 @@ talk:
 ```
 
 #### 答案
-
-code:
 ```java
 class Solution {
     public boolean isPalindrome(int x) {
@@ -667,8 +631,6 @@ class Solution {
     }
 }
 ```
-
-talk:
 
 从最高位取出每一个字符与对应的低位的字符比较，如果不一致则返回false。
 
@@ -737,8 +699,6 @@ p = "mis*is*p*."
 #### 答案
 
 ##### 方法一：
-
-code:
 ```java
 class Solution {
     public boolean isMatch(String s, String p) {
@@ -779,8 +739,6 @@ class Solution {
 }
 ```
 
-talk:
-
 先比较当前sIndex和pIndex指向的字符是否匹配得到flag。
 
 当pIndex+1对应的字符是'*'时：
@@ -794,8 +752,6 @@ talk:
     * 如果flag等于false，匹配失败，返回false。
     
 ##### 方法二：动态规划优化
-
-code:
 ```java
 enum Result {
     TRUE,FALSE
@@ -850,8 +806,6 @@ class Solution {
 }
 ```
 
-talk:
-
 使用动态规划优化了算法，执行时间缩短为了三分之一。
 
 ## 11. 盛最多水的容器
@@ -873,8 +827,6 @@ talk:
 ```
 
 #### 答案
-
-code:
 ```java
 class Solution {
     public int maxArea(int[] height) {
@@ -896,8 +848,6 @@ class Solution {
     }
 }
 ```
-
-talk:
 
 双指针。初始化时i指向0，j指向length-1。如果hi大于hj，则j向左移动一格，如果hi小于hj，则i向右移动一格。其中一个优化的点是：指针移动时，如果移动后指向的元素的值小于移动前的值，那么必然面积不会变大，则在移动一格。
 
@@ -959,8 +909,6 @@ C 可以放在 D (500) 和 M (1000) 的左边，来表示 400 和 900。
 ```
 
 #### 答案
-
-code:
 ```java
 class Solution {
     public String intToRoman(int num) {
@@ -978,8 +926,6 @@ class Solution {
     }
 }
 ```
-
-talk: 
 
 从大到小往下扣减，拼接字符串即可。
 
@@ -1042,8 +988,6 @@ C 可以放在 D (500) 和 M (1000) 的左边，来表示 400 和 900。
 ```
 
 #### 答案
-
-code:
 ```java
 class Solution {
     public int romanToInt(String s) {
@@ -1136,7 +1080,5 @@ class Solution {
     }
 }
 ```
-
-talk:
 
 遍历字符累加即可，需要注意的是4，9，40，90，400，900这几个特殊情况。
