@@ -1078,3 +1078,56 @@ class Solution {
 ```
 
 遍历字符累加即可，需要注意的是4，9，40，90，400，900这几个特殊情况，如果是这几个数，将i向右移动2位，其他数字将i向右移动1位。
+
+## 14. 最长公共前缀
+
+### 题目描述
+
+编写一个函数来查找字符串数组中的最长公共前缀。
+
+如果不存在公共前缀，返回空字符串 ""。
+
+示例 1:
+```
+输入: ["flower","flow","flight"]
+输出: "fl"
+```
+
+示例 2:
+```
+输入: ["dog","racecar","car"]
+输出: ""
+解释: 输入不存在公共前缀。
+```
+
+说明:
+
+所有输入只包含小写字母 a-z 。
+
+### 答案
+```java
+class Solution {
+    public String longestCommonPrefix(String[] strs) {
+        if (strs.length == 0) {
+            return "";
+        }
+        if (strs.length == 1) {
+            return strs[0];
+        }
+        
+        String string = strs[0];
+        for (int i = 0; i < string.length(); i++) {
+            for (int j = 1; j < strs.length; j++) {
+                String a = strs[j];
+                if (i >= a.length() || a.charAt(i) != string.charAt(i)) {
+                    if (i == 0) {
+                        return "";
+                    }
+                    return string.substring(0, i);
+                }
+            }
+        }
+        return string;
+    }
+}
+```
